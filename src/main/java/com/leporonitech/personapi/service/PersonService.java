@@ -1,6 +1,7 @@
 package com.leporonitech.personapi.service;
 
 import com.leporonitech.personapi.dto.MessageResponseDTO;
+import com.leporonitech.personapi.dto.request.PersonDTO;
 import com.leporonitech.personapi.entity.Person;
 import com.leporonitech.personapi.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public MessageResponseDTO createPerson(Person person) {
-        Person savedPerson = personRepository.save(person);
+    public MessageResponseDTO createPerson(PersonDTO personDTO) {
+        Person savedPerson = personRepository.save(personDTO);
         return MessageResponseDTO
                 .builder()
                 .message("Created person with ID " + savedPerson.getId())
