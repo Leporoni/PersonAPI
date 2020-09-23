@@ -1,11 +1,10 @@
 package com.leporonitech.personapi.dto.request;
 
-
-import com.leporonitech.personapi.entity.Phone;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
@@ -34,7 +33,7 @@ public class PersonDTO {
 
     private String birthDate;
 
-    @NotEmpty
     @Valid
-    private List<Phone> phones;
+    @NotEmpty
+    private List<PhoneDTO> phones;
 }
