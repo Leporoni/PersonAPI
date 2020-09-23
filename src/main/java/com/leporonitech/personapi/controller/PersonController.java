@@ -3,29 +3,25 @@ package com.leporonitech.personapi.controller;
 import com.leporonitech.personapi.dto.MessageResponseDTO;
 import com.leporonitech.personapi.entity.Person;
 import com.leporonitech.personapi.repository.PersonRepository;
+import com.leporonitech.personapi.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/people")
 public class PersonController {
 
-    private PersonRepository personRepository;
+    private PersonService personService;
 
     @Autowired
-    public PersonController(PersonRepository personRepository) {
-        this.personRepository = personRepository;
+    public PersonController(PersonService personService) {
+        this.personService = personService;
     }
 
     @PostMapping
-    public MessageResponseDTO createPerson(@RequestBody Person person){
-        Person savedPerson = personRepository.save(person);
-        return MessageResponseDTO
-                .builder()
-                .message("Created person with ID " + savedPerson.getId())
-                .build();
+    @ResponseStatus(HttpStatus.CREATED)
+    public MessageResponseDTO createPerson(@RequestBody Person person) {
+        return personService.createPerson(person);
     }
 }
