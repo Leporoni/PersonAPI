@@ -3,6 +3,7 @@ package com.leporonitech.personapi.service;
 import com.leporonitech.personapi.dto.request.PersonDTO;
 import com.leporonitech.personapi.dto.response.MessageResponseDTO;
 import com.leporonitech.personapi.entity.Person;
+import com.leporonitech.personapi.exception.PersonNotFoundException;
 import com.leporonitech.personapi.mapper.PersonMapper;
 import com.leporonitech.personapi.repository.PersonRepository;
 import lombok.AllArgsConstructor;
@@ -35,7 +36,7 @@ public class PersonService {
                 .collect(Collectors.toList());
     }
 
-    public PersonDTO findById(Long id) throws PersonNotFoundException {
+    public Person findById(Long id) throws PersonNotFoundException {
         Person person = verifyIfExists(id);
 
         return personMapper.toDTO(person);

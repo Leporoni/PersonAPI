@@ -2,6 +2,8 @@ package com.leporonitech.personapi.controller;
 
 import com.leporonitech.personapi.dto.request.PersonDTO;
 import com.leporonitech.personapi.dto.response.MessageResponseDTO;
+import com.leporonitech.personapi.entity.Person;
+import com.leporonitech.personapi.exception.PersonNotFoundException;
 import com.leporonitech.personapi.service.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor(onConstructor = @_(@Autowired))
 public class PersonController {
 
     private PersonService personService;
@@ -25,7 +27,7 @@ public class PersonController {
     }
 
     @GetMapping
-    public List<PersonDTO> listAll() {
+    public List<Person> listAll() {
         return personService.listAll();
     }
 
