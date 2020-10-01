@@ -6,7 +6,6 @@ import com.leporonitech.personapi.entity.Person;
 import com.leporonitech.personapi.exception.PersonNotFoundException;
 import com.leporonitech.personapi.service.PersonService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
-@AllArgsConstructor(onConstructor = @_(@Autowired))
+@AllArgsConstructor
 public class PersonController {
 
     private PersonService personService;
@@ -32,7 +31,7 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
+    public Person findById(@PathVariable Long id) throws PersonNotFoundException {
         return personService.findById(id);
     }
 
